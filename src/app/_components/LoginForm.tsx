@@ -1,13 +1,28 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { login } from "./action";
+import { useFormState, useFormStatus } from "react-dom";
+import { useEffect } from "react";
+import { toast } from "sonner";
 
 export function LoginForm() {
+  const { pending } = useFormStatus();
+  const [errorMessage, dispatch] = useFormState(login, undefined);
+  useEffect(() => {
+    toast.error("Wrong username or password");
+  }, [errorMessage]);
+  const handleClick = (event: { preventDefault: () => void }) => {
+    if (pending) {
+      event.preventDefault();
+    }
+  };
   return (
-    <form className="mx-auto min-w-96 max-w-sm">
+    <form className="mx-auto min-w-96 max-w-sm" action={dispatch}>
       <Card>
         <CardHeader>
           <CardTitle className="text-xl">Sign In</CardTitle>
@@ -22,7 +37,12 @@ export function LoginForm() {
               <Label htmlFor="password">Password</Label>
               <Input id="password" name="password" type="password" required />
             </div>
-            <Button type="submit" className="w-full" formAction={login}>
+            <Button
+              aria-disabled={pending}
+              type="submit"
+              onClick={handleClick}
+              className="w-full"
+            >
               Sign In
             </Button>
           </div>

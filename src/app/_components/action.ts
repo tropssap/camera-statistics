@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 
 import { createClient } from "~/server/supabase/supabase";
 
-export async function login(formData: FormData) {
+export async function login(_currentState: unknown, formData: FormData) {
   const supabase = createClient();
 
   // type-casting here for convenience
@@ -18,8 +18,7 @@ export async function login(formData: FormData) {
   const { error } = await supabase.auth.signInWithPassword(data);
 
   if (error) {
-    console.error(error);
-    redirect("/error");
+    return "Invalid credentials.";
   }
 
   revalidatePath("/", "layout");
