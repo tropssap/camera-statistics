@@ -1,8 +1,4 @@
-"use client";
-
 import Link from "next/link";
-import { useState } from "react";
-import { toast } from "sonner";
 
 import { Button } from "~/components/ui/button";
 import {
@@ -14,41 +10,11 @@ import {
 } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
+import { signup } from "./action";
 
 export function SignUpForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleSubmit = async (event: { preventDefault: () => void }) => {
-    event.preventDefault(); // Prevent default form submission behavior
-
-    try {
-      const response = await fetch("/api/sign-up", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = (await response.json()) as { error: string };
-
-      if (!response.ok) {
-        toast.error("Something went wrong", {
-          duration: 1500,
-        });
-        return;
-      }
-
-      // Handle success - typically setting user context, redirecting, etc.
-      console.log("Login successful:", data);
-    } catch (error) {
-      console.error("Login error:", error);
-    }
-  };
-
   return (
-    <form onSubmit={handleSubmit} className="mx-auto min-w-96 max-w-sm">
+    <form className="mx-auto min-w-96 max-w-sm">
       <Card className="mx-auto max-w-sm">
         <CardHeader>
           <CardTitle className="text-xl">Sign Up</CardTitle>
@@ -73,23 +39,16 @@ export function SignUpForm() {
               <Input
                 id="email"
                 type="email"
+                name="email"
                 placeholder="m@example.com"
                 required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="grid gap-2">
               <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                type="password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+              <Input id="password" type="password" name="password" required />
             </div>
-            <Button type="submit" className="w-full">
+            <Button type="submit" formAction={signup} className="w-full">
               Create an account
             </Button>
           </div>
