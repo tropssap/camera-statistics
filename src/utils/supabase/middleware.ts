@@ -1,4 +1,5 @@
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
+import { ResponseCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { NextResponse, type NextRequest } from "next/server";
 
 export async function updateSession(request: NextRequest) {
@@ -21,7 +22,7 @@ export async function updateSession(request: NextRequest) {
             name,
             value,
             ...options,
-          });
+          } as ResponseCookie);
           response = NextResponse.next({
             request: {
               headers: request.headers,
@@ -31,14 +32,14 @@ export async function updateSession(request: NextRequest) {
             name,
             value,
             ...options,
-          });
+          } as ResponseCookie);
         },
         remove(name: string, options: CookieOptions) {
           request.cookies.set({
             name,
             value: "",
             ...options,
-          });
+          } as ResponseCookie);
           response = NextResponse.next({
             request: {
               headers: request.headers,
@@ -48,7 +49,7 @@ export async function updateSession(request: NextRequest) {
             name,
             value: "",
             ...options,
-          });
+          } as ResponseCookie);
         },
       },
     },
