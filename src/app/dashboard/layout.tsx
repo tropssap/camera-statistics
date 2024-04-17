@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { createClient } from "~/server/supabase/supabase";
+import Header from "./_components/Header";
 
 export const metadata = {
   title: "Camera Statistics",
@@ -19,5 +20,10 @@ export default async function RootLayout({
     redirect("/login");
   }
 
-  return children;
+  return (
+    <>
+      <Header user={data?.user} />
+      {children}
+    </>
+  );
 }

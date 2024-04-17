@@ -14,7 +14,7 @@ export function LoginForm() {
   const { pending } = useFormStatus();
   const [errorMessage, dispatch] = useFormState(login, undefined);
   useEffect(() => {
-    toast.error("Wrong username or password");
+    if (errorMessage) toast.error("Wrong username or password");
   }, [errorMessage]);
   const handleClick = (event: { preventDefault: () => void }) => {
     if (pending) {
