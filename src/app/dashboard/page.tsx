@@ -10,7 +10,7 @@ export default async function HomePage() {
 
   return (
     <main className="flex  flex-col items-center justify-center ">
-      <Link href={`/dashboard/point/1`}>
+      <Link href={`/dashboard/point/1`} prefetch={true}>
         <p>dawdasd</p>
       </Link>
     </main>
