@@ -13,6 +13,7 @@ export default async function HomePage() {
       <Link href={`/dashboard/point/1`} prefetch={true}>
         <p>dawdasd</p>
       </Link>
+      <Link href={"/dashboard/point/add"}>add</Link>
     </main>
   );
 }

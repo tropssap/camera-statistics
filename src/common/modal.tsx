@@ -3,6 +3,7 @@
 import { type ElementRef, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { createPortal } from "react-dom";
+import { Toaster } from "~/components/ui/sonner";
 
 export function Modal({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -21,11 +22,12 @@ export function Modal({ children }: { children: React.ReactNode }) {
   return createPortal(
     <dialog
       ref={dialogRef}
-      className="absolute  flex h-screen w-screen items-center justify-center bg-black/70"
+      className="absolute  flex h-screen w-screen items-center justify-center bg-black/80"
       onClose={onDismiss}
     >
       {children}
       {/* <button onClick={onDismiss} className="close-button" /> */}
+      <Toaster />
     </dialog>,
     document.getElementById("modal-root")!,
   );

@@ -22,10 +22,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-sans ${inter.variable} dark `}>
-        <main >
-          {children} <Toaster />
-        </main>
-        <div id="modal-root" />
+        <main>{children}</main>
+        <div id="modal-root" /> <Toaster />
       </body>
     </html>
   );

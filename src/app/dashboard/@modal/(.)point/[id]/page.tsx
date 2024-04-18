@@ -1,4 +1,5 @@
-import { Modal } from "./modal";
+import { FullPagePointView } from "~/app/dashboard/point/FullPagePointView";
+import { Modal } from "../../../../../common/modal";
 
 export default async function PhotoModal({
   params: { id: photoId },
@@ -7,7 +8,7 @@ export default async function PhotoModal({
 }) {
   return (
     <Modal>
-      <div className="min-h-4  text-white">{photoId}dawdadaD</div>
+      <FullPagePointView photoId={photoId} />
     </Modal>
   );
 }
