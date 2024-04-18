@@ -10,8 +10,10 @@ export const metadata = {
 
 export default async function RootLayout({
   children,
+  modal,
 }: {
   children: React.ReactNode;
+  modal: React.ReactNode;
 }) {
   const supabase = createClient();
 
@@ -21,9 +23,10 @@ export default async function RootLayout({
   }
 
   return (
-    <>
+    <div className="grid h-screen grid-rows-[auto,1fr]">
       <Header user={data?.user} />
       {children}
-    </>
+      {modal}
+    </div>
   );
 }

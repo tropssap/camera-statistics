@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { createClient } from "~/server/supabase/supabase";
 
 export default async function HomePage() {
@@ -8,8 +9,10 @@ export default async function HomePage() {
   } = await supabase.auth.getUser();
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center ">
-      <p>dawdasd</p>
+    <main className="flex  flex-col items-center justify-center ">
+      <Link href={`/dashboard/point/1`}>
+        <p>dawdasd</p>
+      </Link>
     </main>
   );
 }
