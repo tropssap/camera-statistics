@@ -5,11 +5,10 @@ import { Button } from "~/components/ui/button";
 import { transliterate } from "~/lib/functions";
 import { createClient } from "~/app/utils/supabase/client";
 import { useState } from "react";
-import { Field, FieldArray, Form, Formik, type FormikProps } from "formik";
+import {  FieldArray, Form, Formik, type FormikProps } from "formik";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
