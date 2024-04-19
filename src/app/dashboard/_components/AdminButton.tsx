@@ -12,7 +12,6 @@ export default function AdminButton() {
     supabase.auth.onAuthStateChange((event, session) => {
       if (session) {
         const jwt = jwtDecode<{ user_role: string }>(session.access_token);
-        console.log(jwt.user_role);
         setUserRole(jwt.user_role);
       }
     });

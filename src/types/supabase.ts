@@ -12,112 +12,274 @@ export type Database = {
       cameras: {
         Row: {
           created_at: string;
+
           id: number;
+
           name: string | null;
+
           point_id: number | null;
+
           processed: boolean;
+
           url: string | null;
         };
+
         Insert: {
           created_at?: string;
+
           id?: number;
+
           name?: string | null;
+
           point_id?: number | null;
+
           processed?: boolean;
+
           url?: string | null;
         };
+
         Update: {
           created_at?: string;
+
           id?: number;
+
           name?: string | null;
+
           point_id?: number | null;
+
           processed?: boolean;
+
           url?: string | null;
         };
+
         Relationships: [
           {
             foreignKeyName: "public_cameras_point_id_fkey";
+
             columns: ["point_id"];
+
             isOneToOne: false;
+
             referencedRelation: "points";
+
             referencedColumns: ["id"];
           },
         ];
       };
+
       points: {
         Row: {
           camera_count: number;
+
           created_at: string;
-          status: string;
+
           floor_plan_url: string | null;
+
           id: number;
+
+          json: Json | null;
+
           name: string | null;
-          user_id: string;
+
+          restart: boolean;
+
+          status: string;
+
+          user_id: string | null;
         };
+
         Insert: {
           camera_count?: number;
+
           created_at?: string;
-          status?: string;
+
           floor_plan_url?: string | null;
+
           id?: number;
+
+          json?: Json | null;
+
           name?: string | null;
-          user_id?: string;
+
+          restart?: boolean;
+
+          status?: string;
+
+          user_id?: string | null;
         };
+
         Update: {
           camera_count?: number;
+
           created_at?: string;
-          status?: string;
+
           floor_plan_url?: string | null;
+
           id?: number;
+
+          json?: Json | null;
+
           name?: string | null;
-          user_id?: string;
+
+          restart?: boolean;
+
+          status?: string;
+
+          user_id?: string | null;
         };
+
         Relationships: [
           {
             foreignKeyName: "public_points_user_id_fkey";
+
             columns: ["user_id"];
+
             isOneToOne: false;
+
             referencedRelation: "users";
+
             referencedColumns: ["id"];
           },
         ];
       };
+
+      role_permissions: {
+        Row: {
+          id: number;
+
+          permission: Database["public"]["Enums"]["app_permission"];
+
+          role: Database["public"]["Enums"]["app_role"];
+        };
+
+        Insert: {
+          id?: number;
+
+          permission: Database["public"]["Enums"]["app_permission"];
+
+          role: Database["public"]["Enums"]["app_role"];
+        };
+
+        Update: {
+          id?: number;
+
+          permission?: Database["public"]["Enums"]["app_permission"];
+
+          role?: Database["public"]["Enums"]["app_role"];
+        };
+
+        Relationships: [];
+      };
+
       statistics: {
         Row: {
           created_at: string;
+
           id: number;
+
           point_id: number | null;
         };
+
         Insert: {
           created_at?: string;
+
           id?: number;
+
           point_id?: number | null;
         };
+
         Update: {
           created_at?: string;
+
           id?: number;
+
           point_id?: number | null;
         };
+
         Relationships: [
           {
             foreignKeyName: "public_statistics_point_id_fkey";
+
             columns: ["point_id"];
+
             isOneToOne: false;
+
             referencedRelation: "points";
+
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+
+      user_roles: {
+        Row: {
+          id: number;
+
+          role: Database["public"]["Enums"]["app_role"];
+
+          user_id: string;
+        };
+
+        Insert: {
+          id?: number;
+
+          role: Database["public"]["Enums"]["app_role"];
+
+          user_id: string;
+        };
+
+        Update: {
+          id?: number;
+
+          role?: Database["public"]["Enums"]["app_role"];
+
+          user_id?: string;
+        };
+
+        Relationships: [
+          {
+            foreignKeyName: "user_roles_user_id_fkey";
+
+            columns: ["user_id"];
+
+            isOneToOne: false;
+
+            referencedRelation: "users";
+
             referencedColumns: ["id"];
           },
         ];
       };
     };
+
     Views: {
       [_ in never]: never;
     };
+
     Functions: {
-      [_ in never]: never;
+      authorize: {
+        Args: {
+          requested_permission: Database["public"]["Enums"]["app_permission"];
+        };
+
+        Returns: boolean;
+      };
+
+      custom_access_token_hook: {
+        Args: {
+          event: Json;
+        };
+
+        Returns: Json;
+      };
     };
+
     Enums: {
-      [_ in never]: never;
+      app_permission: "read_all";
+
+      app_role: "admin";
     };
+
     CompositeTypes: {
       [_ in never]: never;
     };
@@ -195,8 +357,8 @@ export type TablesUpdate<
 
 export type Enums<
   PublicEnumNameOrOptions extends
-    // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
-    keyof PublicSchema["Enums"] | { schema: keyof Database },
+    | keyof PublicSchema["Enums"]
+    | { schema: keyof Database },
   EnumName extends PublicEnumNameOrOptions extends { schema: keyof Database }
     ? keyof Database[PublicEnumNameOrOptions["schema"]]["Enums"]
     : never = never,
