@@ -4,6 +4,8 @@ import { type ElementRef, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { createPortal } from "react-dom";
 import { Toaster } from "~/components/ui/sonner";
+import { ScrollArea } from "~/components/ui/scroll-area";
+import { Button } from "~/components/ui/button";
 
 export function Modal({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -22,11 +24,13 @@ export function Modal({ children }: { children: React.ReactNode }) {
   return createPortal(
     <dialog
       ref={dialogRef}
-      className="absolute  flex h-screen w-screen items-center justify-center bg-black/80"
+      className="fixed flex h-screen w-screen items-center justify-center bg-black/80"
       onClose={onDismiss}
     >
-      {children}
-      {/* <button onClick={onDismiss} className="close-button" /> */}
+      <ScrollArea className="h-screen w-fit rounded-md ">{children}</ScrollArea>
+      <Button onClick={onDismiss} className="fixed right-10 top-4">
+        Close
+      </Button>
       <Toaster />
     </dialog>,
     document.getElementById("modal-root")!,

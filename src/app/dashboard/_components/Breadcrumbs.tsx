@@ -33,9 +33,13 @@ function Breadcrumbs() {
           <Fragment key={page.path}>
             <BreadcrumbItem>
               {index !== a.length - 1 ? (
-                <BreadcrumbLink href={page.path}>{page.label}</BreadcrumbLink>
+                <BreadcrumbLink href={page.path}>
+                  {page.label.charAt(0).toUpperCase() + page.label.slice(1)}
+                </BreadcrumbLink>
               ) : (
-                <BreadcrumbPage>{page.label}</BreadcrumbPage>
+                <BreadcrumbPage>
+                  {page.label.charAt(0).toUpperCase() + page.label.slice(1)}
+                </BreadcrumbPage>
               )}{" "}
             </BreadcrumbItem>
             {index !== a.length - 1 && <BreadcrumbSeparator />}
