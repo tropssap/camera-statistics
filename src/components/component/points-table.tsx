@@ -27,6 +27,7 @@ import { Badge } from "~/components/ui/badge";
 import Image from "next/image";
 import { type JSX, type SVGProps } from "react";
 import { createClient } from "~/server/supabase/supabase";
+import ClientTableRow from "./client-table-row";
 
 export async function PointsTable() {
   const supabase = createClient();
@@ -48,15 +49,14 @@ export async function PointsTable() {
                 </TabsTrigger>
               </TabsList> */}
             <div className="ml-auto flex items-center gap-2">
-              <Link
-                href="/dashboard/point/add"
-                className="flex h-8 flex-row items-center justify-center gap-1 rounded-md bg-primary px-3 text-center text-primary-foreground hover:bg-primary/90"
-              >
-                <PlusCircleIcon className="h-3.5 w-3.5" />
-                <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                  Add Point
-                </span>
-              </Link>
+              <Button className="h-8 gap-1" size="sm" asChild>
+                <Link href="/dashboard/point/add">
+                  <PlusCircleIcon className="h-3.5 w-3.5" />
+                  <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
+                    Add Point
+                  </span>
+                </Link>
+              </Button>
             </div>
           </div>
           {/* <TabsContent value="all"> */}
@@ -89,7 +89,10 @@ export async function PointsTable() {
                 </TableHeader>
                 <TableBody>
                   {points?.map((point) => (
-                    <TableRow key={point.id}>
+                    <ClientTableRow
+                      key={point.id}
+                      href={`/dashboard/point/${point.id}`}
+                    >
                       <TableCell className="hidden sm:table-cell">
                         <Image
                           alt="Floor Plan"
@@ -130,7 +133,7 @@ export async function PointsTable() {
                           </DropdownMenuContent>
                         </DropdownMenu>
                       </TableCell>
-                    </TableRow>
+                    </ClientTableRow>
                   ))}
                 </TableBody>
               </Table>
