@@ -4,7 +4,7 @@ import { Label } from "~/components/ui/label";
 import { Button } from "~/components/ui/button";
 import { transliterate } from "~/lib/functions";
 import { useState } from "react";
-import {  FieldArray, Form, Formik, type FormikProps } from "formik";
+import { FieldArray, Form, Formik, type FormikProps } from "formik";
 import {
   Card,
   CardContent,
@@ -141,7 +141,7 @@ function AddPoint() {
                 </div>
 
                 <div className="grid w-full  items-center gap-1.5">
-                  <Label htmlFor="picture">Floor plan</Label>
+                  <Label htmlFor="image">Floor plan</Label>
                   <Input
                     id="image"
                     name="image"
