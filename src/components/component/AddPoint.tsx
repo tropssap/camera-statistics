@@ -3,7 +3,6 @@ import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { Button } from "~/components/ui/button";
 import { transliterate } from "~/lib/functions";
-import { createClient } from "~/app/utils/supabase/client";
 import { useState } from "react";
 import {  FieldArray, Form, Formik, type FormikProps } from "formik";
 import {
@@ -15,6 +14,7 @@ import {
 } from "~/components/ui/card";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { createClient } from "~/lib/utils/supabase/client";
 
 function AddPoint() {
   const supabase = createClient();

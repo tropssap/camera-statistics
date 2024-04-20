@@ -1,5 +1,5 @@
-import { Modal } from "~/common/modal";
-import AddPoint from "~/common/AddPoint";
+import { Modal } from "~/components/component/modal";
+import AddPoint from "~/components/component/AddPoint";
 
 export default async function AddModal() {
   return (

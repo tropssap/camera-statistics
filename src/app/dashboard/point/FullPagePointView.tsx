@@ -1,16 +1,12 @@
-// import { createClient } from "~/server/supabase/supabase";
 
-export async function FullPagePointView(props: { photoId: string }) {
-  const idAsNumber = Number(props.photoId);
+export async function FullPagePointView(props: { id: string }) {
+  const idAsNumber = Number(props.id);
   if (Number.isNaN(idAsNumber)) throw new Error("Invalid photo id");
 
-  // const supabase = createClient();
-
-  // const { data, error } = await supabase.auth.getUser();
 
   return (
     <div className="flex h-full w-screen min-w-0 items-center justify-center text-white">
-      {props.photoId}
+      {props.id}
     </div>
   );
 }

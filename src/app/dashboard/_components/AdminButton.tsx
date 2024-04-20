@@ -3,9 +3,9 @@
 import { Button } from "~/components/ui/button";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
-import { createClient } from "~/app/utils/supabase/client";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { createClient } from "~/lib/utils/supabase/client";
 
 export default function AdminButton() {
   const supabase = createClient();
