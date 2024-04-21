@@ -1,5 +1,5 @@
 import { Modal } from "~/components/component/modal";
-import { JsonInput } from "~/app/admin/_components/json-input";
+import { FullPagePoint } from "~/app/admin/_components/full-page-point";
 
 export default async function AdminPointModal({
   params: { id },
@@ -8,7 +8,7 @@ export default async function AdminPointModal({
 }) {
   return (
     <Modal>
-      <JsonInput />
+      <FullPagePoint id={id} />
     </Modal>
   );
 }

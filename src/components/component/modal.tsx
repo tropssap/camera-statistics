@@ -7,7 +7,13 @@ import { Toaster } from "~/components/ui/sonner";
 import { ScrollArea } from "~/components/ui/scroll-area";
 import { Button } from "~/components/ui/button";
 
-export function Modal({ children }: { children: React.ReactNode }) {
+export function Modal({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
   const router = useRouter();
   const dialogRef = useRef<ElementRef<"dialog">>(null);
 
@@ -24,10 +30,12 @@ export function Modal({ children }: { children: React.ReactNode }) {
   return createPortal(
     <dialog
       ref={dialogRef}
-      className="fixed flex h-screen w-screen items-center justify-center bg-black/80"
+      className="fixed flex h-screen w-screen items-center justify-center bg-black/80 "
       onClose={onDismiss}
     >
-      <ScrollArea className="h-screen w-fit rounded-md ">{children}</ScrollArea>
+      <ScrollArea className={"h-screen w-fit rounded-md " + className ?? ""}>
+        {children}
+      </ScrollArea>
       <Button onClick={onDismiss} className="fixed right-10 top-4">
         Close
       </Button>

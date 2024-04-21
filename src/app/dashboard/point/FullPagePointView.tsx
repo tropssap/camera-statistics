@@ -1,7 +1,7 @@
 
 export async function FullPagePointView(props: { id: string }) {
   const idAsNumber = Number(props.id);
-  if (Number.isNaN(idAsNumber)) throw new Error("Invalid photo id");
+  if (Number.isNaN(idAsNumber)) throw new Error("Invalid id");
 
 
   return (

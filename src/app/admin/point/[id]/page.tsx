@@ -1,4 +1,4 @@
-import { JsonInput } from "~/app/admin/_components/json-input";
+import { FullPagePoint } from "../../_components/full-page-point";
 
 export default async function AdminPoint({
   params: { id },
@@ -6,8 +6,8 @@ export default async function AdminPoint({
   params: { id: string };
 }) {
   return (
-    <div className="flex flex-row justify-center gap-10 p-10">
-      <JsonInput />
+    <div className="flex flex-row justify-center ">
+      <FullPagePoint id={id} />
     </div>
   );
 }
