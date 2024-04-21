@@ -1,6 +1,6 @@
 import { FullPagePointView } from "../FullPagePointView";
 
-export default async function PhotoModal({
+export default async function Point({
   params: { id },
 }: {
   params: { id: string };

@@ -29,7 +29,7 @@ import { type JSX, type SVGProps } from "react";
 import { createClient } from "~/server/supabase/supabase";
 import ClientTableRow from "./client-table-row";
 
-export async function PointsTable() {
+export async function PointsTable(props: { path: string; isAdd: boolean }) {
   const supabase = createClient();
   await supabase.auth.getUser();
   const { data: points } = await supabase.from("points").select();
@@ -49,14 +49,16 @@ export async function PointsTable() {
                 </TabsTrigger>
               </TabsList> */}
             <div className="ml-auto flex items-center gap-2">
-              <Button className="h-8 gap-1" size="sm" asChild>
-                <Link href="/dashboard/point/add">
-                  <PlusCircleIcon className="h-3.5 w-3.5" />
-                  <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                    Add Point
-                  </span>
-                </Link>
-              </Button>
+              {props.isAdd && (
+                <Button className="h-8 gap-1" size="sm" asChild>
+                  <Link href="/dashboard/point/add">
+                    <PlusCircleIcon className="h-3.5 w-3.5" />
+                    <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
+                      Add Point
+                    </span>
+                  </Link>
+                </Button>
+              )}
             </div>
           </div>
           {/* <TabsContent value="all"> */}
@@ -91,7 +93,7 @@ export async function PointsTable() {
                   {points?.map((point) => (
                     <ClientTableRow
                       key={point.id}
-                      href={`/dashboard/point/${point.id}`}
+                      href={props.path + `/${point.id}`}
                     >
                       <TableCell className="hidden sm:table-cell">
                         <Image

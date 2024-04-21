@@ -2,6 +2,7 @@
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { toast } from "sonner";
 import {
   CardTitle,
   CardDescription,
@@ -11,7 +12,6 @@ import {
 } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import { Button } from "~/components/ui/button";
-import { toast } from "sonner";
 
 export function JsonInput() {
   const formik = useFormik({
@@ -24,14 +24,17 @@ export function JsonInput() {
       pairs: Yup.string().required("Required"),
     }),
     onSubmit: (values) => {
-      console.log({
-        homography_matrix: [
-          [values.matrix[0], values.matrix[1], values.matrix[2]],
-          [values.matrix[3], values.matrix[4], values.matrix[5]],
-          [values.matrix[6], values.matrix[7], values.matrix[8]],
-        ],
-        ground_polygon: values.pairs,
-      });
+      void navigator.clipboard.writeText(
+        JSON.stringify({
+          homography_matrix: [
+            [values.matrix[0], values.matrix[1], values.matrix[2]],
+            [values.matrix[3], values.matrix[4], values.matrix[5]],
+            [values.matrix[6], values.matrix[7], values.matrix[8]],
+          ],
+          ground_polygon: values.pairs,
+        }),
+      );
+      toast("Copied");
     },
     validateOnBlur: true,
     validateOnChange: true,

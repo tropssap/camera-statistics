@@ -13,7 +13,7 @@ export default async function HomePage() {
             <Skeleton className="m-10  min-h-screen rounded-md sm:px-7" />
           }
         >
-          <PointsTable />
+          <PointsTable path="/dashboard/point" isAdd={true} />
         </Suspense>
       </ScrollArea>
     </main>

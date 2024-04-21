@@ -1,7 +1,7 @@
 import { FullPagePointView } from "~/app/dashboard/point/FullPagePointView";
-import { Modal } from "../../../../../components/component/modal";
+import { Modal } from "~/components/component/modal";
 
-export default async function PhotoModal({
+export default async function PointModal({
   params: { id },
 }: {
   params: { id: string };
