@@ -40,12 +40,8 @@ export async function FullPagePoint(props: { id: string }) {
           return obj;
         }, {} as CameraObject);
         return (
-          <div className="flex flex-row gap-10 p-10 ">
-            <JsonInput
-              point={point}
-              cameras={cameras}
-              initialValues={initialValues}
-            />
+          <div className="flex flex-col gap-10 p-10 md:flex-row ">
+            <JsonInput cameras={cameras} initialValues={initialValues} />
             <PointPreview point={point} cameras={cameras} />
           </div>
         );

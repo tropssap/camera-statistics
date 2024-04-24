@@ -1,4 +1,4 @@
-import MillionLint from '@million/lint';
+
 import { env } from "./src/env.js";
 
 /**
@@ -10,12 +10,12 @@ await import("./src/env.js");
 /** @type {import("next").NextConfig} */
 const config = {
   images: {
-    remotePatterns: [{
-      protocol: "https",
-      hostname: env.IMAGE_HOST
-    }]
-  }
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: env.IMAGE_HOST,
+      },
+    ],
+  },
 };
-export default MillionLint.next({
-  rsc: true
-})(config);
+export default config;

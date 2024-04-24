@@ -16,21 +16,9 @@ import { type Json } from "~/types/supabase";
 import { type CameraObject } from "./full-page-point";
 
 export function JsonInput({
-  point,
   cameras,
   initialValues,
 }: {
-  point: {
-    camera_count: number;
-    created_at: string;
-    floor_plan_url: string | null;
-    id: number;
-    json: Json;
-    name: string | null;
-    restart: boolean;
-    status: string;
-    user_id: string | null;
-  };
   cameras: {
     created_at: string;
     id: number;

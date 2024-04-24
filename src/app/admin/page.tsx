@@ -6,7 +6,7 @@ import { Skeleton } from "~/components/ui/skeleton";
 function Page() {
   return (
     <main className="flex  flex-col items-center justify-center overflow-hidden">
-      <ScrollArea className="h-screen w-full p-4">
+      <ScrollArea className="h-screen w-full">
         <Suspense
           fallback={
             <Skeleton className="m-10  min-h-screen rounded-md sm:px-7" />
