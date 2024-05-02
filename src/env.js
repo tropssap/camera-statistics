@@ -11,6 +11,7 @@ export const env = createEnv({
     SUPABASE_URL: z.string(),
     SUPABASE_ANON_KEY: z.string(),
     IMAGE_HOST: z.string(),
+    SENTRY_AUTH_TOKEN: z.string(),
   },
 
   /**
@@ -35,6 +36,7 @@ export const env = createEnv({
     SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY,
     NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
     IMAGE_HOST: process.env.IMAGE_HOST,
+    SENTRY_AUTH_TOKEN: process.env.SENTRY_AUTH_TOKEN,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially
