@@ -178,6 +178,10 @@ export type Database = {
           id: number;
 
           point_id: number | null;
+
+          type: string;
+
+          data: Json;
         };
 
         Insert: {
